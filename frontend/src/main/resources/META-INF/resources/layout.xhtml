@@ -7,6 +7,9 @@
         xmlns:c="http://java.sun.com/jsp/jstl/core"
 >
 
+
+<!-- provide source pls-->
+
 <head>
     <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -30,8 +33,9 @@
 <sec:authenticated>
     <c:set value="#{userInfoController.user}" var="user"/>
 
-    <p><h:outputText value="Hi #{user.forename}!!!"/></p>
-
+    <p><h:outputText value="Welcome #{user.forename}!!!"/></p>
+    <p><h:outputText value="Mills: #{user.millCurrency}"/></p>
+    <p><h:outputText value="Available lootboxes: #{user.lootBoxesLeft}"/></p>
 
     <a id="logoutId" href="logout" class="btn">Log Out</a>
 

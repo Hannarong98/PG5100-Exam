@@ -5,6 +5,7 @@
         xmlns:sec="http://www.springframework.org/security/tags"
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+        xmlns:f="http://java.sun.com/jsf/core"
 >
 
 <ui:composition template="/layout.xhtml">
@@ -19,8 +20,27 @@
         <h2>Heartstone collector</h2>
 
 
+
         <sec:anonymous>
-            Log in to play!!!
+            <h2>Loot table</h2>
+            <h:dataTable value="#{lootTableController.allItems}" id="lootTable" var="item" border="1">
+                <h:column>
+                    <f:facet name="head">Card</f:facet>
+                    <h:outputText value="#{item.title}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="head">Card</f:facet>
+                    <h:outputText value="#{item.rarity}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="head">Card</f:facet>
+                    <h:outputText value="#{item.description}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="head">Card</f:facet>
+                    <h:outputText value="#{item.price}"/>
+                </h:column>
+            </h:dataTable>
         </sec:anonymous>
 
     </ui:define>

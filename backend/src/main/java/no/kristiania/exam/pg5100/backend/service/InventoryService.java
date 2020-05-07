@@ -47,7 +47,9 @@ public class InventoryService {
         return em.find(Inventory.class, id);
     }
 
-    public boolean addCardsToInventory(String email, List<Item> itemsFromLootBox) {
+    public void openLootBox(String email) {
+
+       List<Item> itemsFromLootBox = itemService.getRandomItems(3);
 
         User user = userService.getUser(email);
 
@@ -56,7 +58,7 @@ public class InventoryService {
         if (user.getLootBoxesLeft() != 0) {
             user.setLootBoxesLeft(user.getLootBoxesLeft() - 1);
         } else {
-            return false;
+            return;
         }
 
         if (inventory != null) {
@@ -86,7 +88,6 @@ public class InventoryService {
         //Inventory updates
         em.merge(inventory);
 
-        return true;
     }
 
 

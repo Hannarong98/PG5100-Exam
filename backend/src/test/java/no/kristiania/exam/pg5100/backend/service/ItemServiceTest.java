@@ -17,8 +17,7 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest(classes = StubApplication.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
+
 public class ItemServiceTest extends ServiceTestBase {
 
     @Autowired
@@ -78,11 +77,6 @@ public class ItemServiceTest extends ServiceTestBase {
 
     }
 
-    private void initThreeTestItems() {
-        itemService.createItem("one", Rarity.RARE, "Some description", 9999);
-        itemService.createItem("two", Rarity.RARE, "Some description", 9999);
-        itemService.createItem("three", Rarity.RARE, "Some description", 9999);
-    }
 
     private String getTestTitle() {
         return "Nithog";

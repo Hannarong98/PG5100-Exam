@@ -14,8 +14,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest(classes = StubApplication.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
+
 public class InventoryServiceTest extends ServiceTestBase {
 
     @Autowired
@@ -27,11 +26,7 @@ public class InventoryServiceTest extends ServiceTestBase {
     @Autowired
     private ItemService itemService;
 
-    String email = "foo@foo.com";
 
-    public void createUser() {
-        userService.createUser(email, "bar", "baz", "qux");
-    }
 
     @Test
     public void testCreateInventory() {
@@ -49,33 +44,50 @@ public class InventoryServiceTest extends ServiceTestBase {
     }
 
     @Test
-    public void testAddItemToInventory() {
+    public void testOpenLootBox() {
 
-        createUser();
+        createUserWithInventory();
         initThreeTestItems();
 
         User user = userService.getUser(email);
-        assertNull(user.getInventory());
+        assertEquals(0, user.getInventory().getItemList().size());
 
-        inventoryService.createInventory(email);
+        inventoryService.openLootBox(email);
+        User updated = userService.getUser(email);
+        assertEquals(3, updated.getInventory().getItemList().size());
+
+    }
+
+
+    @Test
+    public void testIncrementQuantityIfAlreadyOwned() {
+
+        createUserWithInventory();
+        initThreeTestItems();
+
+        User user = userService.getUser(email);
+        assertEquals(0, user.getInventory().getItemList().size());
+
+        inventoryService.openLootBox(email);
         User updated = userService.getUser(email);
 
+        //Three items to start with
+        assertEquals(3, updated.getInventory().getItemList().size());
 
-        List<Item> items = itemService.getRandomItems(3);
+        assertEquals(1, updated.getInventory().getItemList().get(0).getQuantity());
 
-        assertEquals(0, updated.getInventory().getItemList().size());
 
-        inventoryService.addCardsToInventory(email, items);
+        inventoryService.openLootBox(email);
         User updatedAgain = userService.getUser(email);
 
+        //Still have three items but quantity are updated
         assertEquals(3, updatedAgain.getInventory().getItemList().size());
 
+        assertEquals(2, updatedAgain.getInventory().getItemList().get(0).getQuantity());
+
+
     }
 
-    private void initThreeTestItems() {
-        itemService.createItem("one", Rarity.RARE, "Some description", 9999);
-        itemService.createItem("two", Rarity.RARE, "Some description", 9999);
-        itemService.createItem("three", Rarity.RARE, "Some description", 9999);
-    }
+
 
 }

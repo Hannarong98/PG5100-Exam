@@ -1,5 +1,6 @@
 package no.kristiania.exam.pg5100.backend.service;
 
+import no.kristiania.exam.pg5100.backend.entity.Inventory;
 import no.kristiania.exam.pg5100.backend.entity.Item;
 import no.kristiania.exam.pg5100.backend.entity.User;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,7 @@ public class ResetService {
 
         deleteEntities(User.class);
         deleteEntities(Item.class);
+        deleteEntities(Inventory.class);
     }
 
     private void deleteEntities(Class<?> entity){

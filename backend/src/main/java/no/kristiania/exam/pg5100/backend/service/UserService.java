@@ -23,8 +23,6 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private InventoryService inventoryService;
 
 
 
@@ -56,19 +54,34 @@ public class UserService {
         return em.find(User.class, userEmail);
     }
 
+
+    public boolean updateUserCurrency(String userEmail, int toAmount){
+        User user = getUser(userEmail);
+
+        if(user == null){
+            throw new IllegalArgumentException("User with user email:" + userEmail + " does not exist");
+        }
+
+        user.setMillCurrency(toAmount);
+
+        em.persist(user);
+
+        return true;
+    }
+
     public boolean buyLootBox(String userEmail){
         User user = getUser(userEmail);
 
-        int price = 700;
+        int lootBoxPrice = 700;
 
-        if(user.getMillCurrency() >= price){
+        if(user.getMillCurrency() >= lootBoxPrice){
             user.setLootBoxesLeft(user.getLootBoxesLeft() + 1);
+            user.setMillCurrency(user.getMillCurrency() - lootBoxPrice);
         } else {
             return false;
         }
 
-        em.merge(user);
-
+        em.persist(user);
         return true;
     }
 
@@ -76,6 +89,7 @@ public class UserService {
         User user = getUser(userEmail);
         List<Item> itemsInInventory = user.getInventory().getItemList();
 
+        // Stream is found at https://www.baeldung.com/find-list-element-java
         Item found = itemsInInventory.stream()
                 .filter(e-> e.getId().equals(itemId))
                 .findAny()
@@ -92,6 +106,8 @@ public class UserService {
         } else {
             return false;
         }
+
+        em.persist(user);
         return true;
     }
 

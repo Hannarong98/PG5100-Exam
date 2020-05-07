@@ -63,10 +63,9 @@ public class ItemService {
             }
             chosen.add(k);
 
-            TypedQuery<Item> query = em.createQuery("select i from Item i where i.id=?1", Item.class);
-
-            query.setParameter(1, Long.valueOf(k));
-
+            TypedQuery<Item> query = em.createQuery("select i from Item i", Item.class);
+            query.setFirstResult(k);
+            query.setMaxResults(1);
             items.add(query.getSingleResult());
         }
         return  items;

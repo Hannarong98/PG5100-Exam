@@ -24,59 +24,70 @@ public class InventoryService {
     @Autowired
     private UserService userService;
 
-    public Long createInventory(String email){
+    public Long createInventory(String email) {
 
         User user = em.find(User.class, email);
-        if(user == null){
+        if (user == null) {
             throw new IllegalArgumentException("User does not exist");
         }
 
-        Inventory copy = new Inventory();
-        copy.setUser(user);
-        copy.setItemList(new ArrayList<>());
+        Inventory inventory = new Inventory();
+        inventory.setUser(user);
+        inventory.setItemList(new ArrayList<>());
 
-        em.persist(copy);
-        user.setInventory(copy);
-        em.merge(copy);
+        em.persist(inventory);
+        user.setInventory(inventory);
+        em.merge(inventory);
 
-        return copy.getId();
+        return inventory.getId();
     }
 
-    public boolean addCardsToInventory(String email, List<Item> itemsFromLootBox){
+
+    public Inventory getInventory(Long id){
+        return em.find(Inventory.class, id);
+    }
+
+    public boolean addCardsToInventory(String email, List<Item> itemsFromLootBox) {
 
         User user = userService.getUser(email);
 
-        Inventory inventory = user.getInventory();
+        Inventory inventory = getInventory(user.getInventory().getId());
 
-        if(inventory != null) {
+        if (user.getLootBoxesLeft() != 0) {
+            user.setLootBoxesLeft(user.getLootBoxesLeft() - 1);
+        } else {
+            return false;
+        }
 
-            for (int i = 0; i <= itemsFromLootBox.size(); i++) {
+        if (inventory != null) {
+
+            for (int i = 0; i < itemsFromLootBox.size(); i++) {
 
                 Long itemId = itemsFromLootBox.get(i).getId();
 
                 Item item = itemService.getItem(itemId);
 
-                boolean alreadyOwned = user.getInventory().getItemList().contains(item);
+                boolean alreadyOwned = inventory.getItemList().contains(item);
 
-                if(alreadyOwned){
-                    Item ownedItem = user.getInventory().getItemList().get(i);
+                if (alreadyOwned) {
+                    Item ownedItem = inventory.getItemList().get(i);
                     ownedItem.setQuantity(ownedItem.getQuantity() + 1);
-                } else  {
+                } else {
                     item.setQuantity(1);
                     inventory.getItemList().add(item);
                 }
             }
-
-            em.merge(inventory);
-        } else {
-            createInventory(email);
-            itemsFromLootBox.forEach(e-> user.getInventory().getItemList().add(e));
         }
+
+
+        //User lootbox counter updates
+        em.merge(user);
+
+        //Inventory updates
+        em.merge(inventory);
+
         return true;
     }
-
-
-
 
 
 }

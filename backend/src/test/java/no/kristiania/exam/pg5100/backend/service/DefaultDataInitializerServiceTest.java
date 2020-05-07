@@ -32,14 +32,5 @@ public class DefaultDataInitializerServiceTest {
         assertTrue(userService.getAllUsers().size() > 0);
     }
 
-    @Test
-    public void testGetRandom(){
-
-        List<Item> items = itemService.getRandomItems(3);
-
-        items.forEach(e -> System.out.println(e.getTitle()));
-
-    }
-
 
 }

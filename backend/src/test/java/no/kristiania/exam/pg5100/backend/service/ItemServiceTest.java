@@ -11,11 +11,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
+@ExtendWith(SpringExtension.class)
+@SpringBootTest(classes = StubApplication.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public class ItemServiceTest extends ServiceTestBase {
 
     @Autowired
@@ -23,18 +26,16 @@ public class ItemServiceTest extends ServiceTestBase {
 
 
     @Test
-    public void testCreateItem() {
-        Long itemId = itemService.createItem(
-                getTestTitle(), getTestRarity(), "Some description", 9999);
+    public void testCreateAndRetrieveItem() {
+        Long itemId = itemService.createItem(getTestTitle(), getTestRarity(), "Some description", 9999);
 
-        assertNotNull(itemId);
+        assertNotNull(itemService.getItem(itemId));
     }
 
     @Test
     public void testThrowIfSameTitle() {
 
-        Long itemId = itemService.createItem(
-                getTestTitle(), getTestRarity(), "Some description", 9999);
+        Long itemId = itemService.createItem(getTestTitle(), getTestRarity(), "Some description", 9999);
 
         assertNotNull(itemId);
 
@@ -44,6 +45,45 @@ public class ItemServiceTest extends ServiceTestBase {
     }
 
 
+    @Test
+    public void testTooManyItems(){
+        initThreeTestItems();
+
+        assertThrows(IllegalArgumentException.class, ()-> itemService.getRandomItems(4));
+
+    }
+
+    @Test
+    public void testGetRandom() {
+
+        initThreeTestItems();
+
+        Set<String> titles = new HashSet<>();
+
+        for (int i = 0; i < 50; i++) {
+            List<Item> items = itemService.getRandomItems(2);
+            assertEquals(2, items.size());
+
+            Item itemOne = items.get(0);
+            Item itemTwo = items.get(1);
+
+            assertNotEquals(itemOne.getTitle(), itemTwo.getTitle());
+
+            titles.add(itemOne.getTitle());
+            titles.add(itemOne.getTitle());
+        }
+            assertEquals(3, titles.size());
+        assertTrue(titles.contains("one"));
+        assertTrue(titles.contains("two"));
+
+    }
+
+    private void initThreeTestItems() {
+        itemService.createItem("one", Rarity.RARE, "Some description", 9999);
+        itemService.createItem("two", Rarity.RARE, "Some description", 9999);
+        itemService.createItem("three", Rarity.RARE, "Some description", 9999);
+    }
+
     private String getTestTitle() {
         return "Nithog";
     }
@@ -51,7 +91,6 @@ public class ItemServiceTest extends ServiceTestBase {
     private Rarity getTestRarity() {
         return Rarity.EPIC;
     }
-
 
 
 }

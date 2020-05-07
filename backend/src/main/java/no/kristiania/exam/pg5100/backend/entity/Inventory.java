@@ -1,6 +1,7 @@
 package no.kristiania.exam.pg5100.backend.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;;
 
 @Entity
@@ -14,7 +15,7 @@ public class Inventory {
     private User user;
 
     @OneToMany(fetch = FetchType.EAGER)
-    private List<Item> items;
+    private List<Item> items = new ArrayList<>();
 
     public Long getId() {
         return id;

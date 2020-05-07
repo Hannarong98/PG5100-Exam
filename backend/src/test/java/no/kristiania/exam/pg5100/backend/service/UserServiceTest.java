@@ -11,7 +11,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
+@ExtendWith(SpringExtension.class)
+@SpringBootTest(classes = StubApplication.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
 public class UserServiceTest extends ServiceTestBase{
 
     @Autowired

@@ -15,7 +15,7 @@ public class User {
 
     @NotBlank
     @Size(max = 128)
-    private String forename;
+    private String firstname;
 
     @NotBlank
     @Size(max = 128)
@@ -49,12 +49,12 @@ public class User {
         this.email = email;
     }
 
-    public String getForename() {
-        return forename;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setForename(String forename) {
-        this.forename = forename;
+    public void setFirstname(String forename) {
+        this.firstname = forename;
     }
 
     public String getSurname() {

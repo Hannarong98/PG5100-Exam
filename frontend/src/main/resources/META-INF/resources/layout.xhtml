@@ -33,11 +33,13 @@
 <sec:authenticated>
     <c:set value="#{userInfoController.user}" var="user"/>
 
-    <p><h:outputText value="Welcome #{user.forename}!!!"/></p>
+    <p><h:outputText value="Welcome #{user.firstname}!!!"/></p>
     <p><h:outputText value="Mills: #{user.millCurrency}"/></p>
     <p><h:outputText value="Available lootboxes: #{user.lootBoxesLeft}"/></p>
 
-    <a id="logoutId" href="logout" class="btn">Log Out</a>
+    <a id="logoutId" href="/logout" class="btn">Log Out</a>
+    <a id="profileId" href="/ui/profile.jsf" class="btn">Profile</a>
+    <a id="redeemId" href="/ui/redeem.jsf" class="btn">Play</a>
 
 </sec:authenticated>
 

@@ -5,6 +5,7 @@ package no.kristiania.exam.pg5100.backend.service;
 
 
 import no.kristiania.exam.pg5100.backend.entity.Rarity;
+import no.kristiania.exam.pg5100.backend.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,8 @@ public class DefaultDataInitializerService {
     @Autowired
     private ItemService itemService;
 
+    @Autowired
+    private InventoryService inventoryService;
 
     @PostConstruct
     public void initialize() {
@@ -29,12 +32,15 @@ public class DefaultDataInitializerService {
         //Default user
         attempt(() -> userService.createUser("foo@chocolatebar.baz", "123", "foo", "chocobar"));
 
+
+
+
         //Legendary cards
         attempt(()-> itemService.createItem("Evocation", Rarity.LEGENDARY, "Fill your hand with random mage spells.", 1000));
-        attempt(()-> itemService.createItem("Reliquary of Souls", Rarity.LEGENDARY, "some rare item", 1000));
-        attempt(()-> itemService.createItem("Untapped Potential", Rarity.LEGENDARY, "some rare item", 1000));
-        attempt(()-> itemService.createItem("Astromancer Solarian", Rarity.LEGENDARY, "some rare item", 1000));
-        attempt(()-> itemService.createItem("Bloodmage Thalnos", Rarity.LEGENDARY, "some rare item", 1000));
+        attempt(()-> itemService.createItem("Reliquary of Souls", Rarity.LEGENDARY, "Lifesteal Deathrattle: Shuffle 'Reliquary Prime' into your deck.", 1000));
+        attempt(()-> itemService.createItem("Untapped Potential", Rarity.LEGENDARY, "Quest: End 4 turns with any unspent Mana. Reward: Ossirian Tear.", 1000));
+        attempt(()-> itemService.createItem("Astromancer Solarian", Rarity.LEGENDARY, "Spell Damage +1. Deathrattle: Shuffle 'Solarian Prime' into your deck.", 1000));
+        attempt(()-> itemService.createItem("Bloodmage Thalnos", Rarity.LEGENDARY, "Spell Damage +1. Deathrattle: Draw a card.", 1000));
 
         //Epic cards
         attempt(()-> itemService.createItem("Ancestor Call", Rarity.EPIC, "Put a random minion from each player's hand into the battlefield.", 750));
@@ -56,7 +62,6 @@ public class DefaultDataInitializerService {
         attempt(()-> itemService.createItem("Adaptation", Rarity.COMMON, "Adapt a friendly minion", 250));
         attempt(()-> itemService.createItem("Aeon Reaver", Rarity.COMMON, "Battlecry: Deal damage to a minion equal to its Attack", 250));
         attempt(()-> itemService.createItem("Amber Watcher", Rarity.COMMON, "Battlecry: Restore 8 Health", 250));
-
     }
 
 

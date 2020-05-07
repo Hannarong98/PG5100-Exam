@@ -2,15 +2,12 @@ package no.kristiania.exam.pg5100.backend.service;
 
 
 import no.kristiania.exam.pg5100.backend.StubApplication;
-import no.kristiania.exam.pg5100.backend.entity.Item;
 import no.kristiania.exam.pg5100.backend.entity.User;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -51,7 +48,7 @@ public class UserServiceTest extends ServiceTestBase{
 
         User user = userService.getUser(email);
 
-        assertEquals("foo", user.getForename());
+        assertEquals("foo", user.getFirstname());
         assertEquals("foo@foo.com", user.getEmail());
         assertEquals("bar", user.getSurname());
         assertEquals(3000, user.getMillCurrency());

@@ -36,4 +36,19 @@ public class UserInfoController {
         return user.getInventory().getItemList();
     }
 
+    public String millItem(Long itemId){
+        userService.sellItem(userEmail, itemId);
+        return "/ui/profile.jsf?faces-redirect=true";
+    }
+
+    public String buyLootBox(){
+        User user = getUser();
+
+        if(user.getMillCurrency() < 700) {
+            return "/ui/redeem.jsf?faces-redirect=true&errorNotEnoughCurrency=true";
+        }
+        userService.buyLootBox(userEmail);
+        return "/ui/redeem.jsf?faces-redirect=true";
+    }
+
 }

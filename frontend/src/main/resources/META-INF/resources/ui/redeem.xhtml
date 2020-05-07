@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xml:lang="en" lang="en">
+<ui:composition template="/layout.xhtml">
+
+    <ui:define name="title">
+        Redeem
+    </ui:define>
+
+
+    <ui:define name="content">
+        <h:outputLabel value="You have any lootboxes left."
+                       rendered="${!empty param['errorNoLootBox']}"/>
+        <h:outputLabel value="You cant afford to buy more boxes."
+                       rendered="${!empty param['errorNotEnoughCurrency']}"/>
+        <h:form prependId="false">
+            <h:commandButton value="Redeem Loot" action="#{gameController.openLootBox}"/>
+            <h:commandButton value="Buy a loot box" action="#{userInfoController.buyLootBox}"/>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
+</html>

@@ -1,6 +1,5 @@
 package no.kristiania.exam.pg5100.backend.service;
 
-import no.kristiania.exam.pg5100.backend.entity.Inventory;
 import no.kristiania.exam.pg5100.backend.entity.Item;
 import no.kristiania.exam.pg5100.backend.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +23,8 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
 
+    @Autowired
+    private InventoryService inventoryService;
 
 
 
@@ -37,13 +38,17 @@ public class UserService {
 
         User user = new User();
         user.setEmail(email);
-        user.setForename(forename);
+        user.setFirstname(forename);
         user.setSurname(surname);
         user.setPassword(hashedPassword);
         user.setLootBoxesLeft(3);
         user.setMillCurrency(3000);
         user.setRoles(Collections.singleton("USER"));
         user.setEnabled(true);
+
+        em.persist(user);
+
+        inventoryService.createInventory(email);
 
         em.persist(user);
 

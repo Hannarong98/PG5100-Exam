@@ -57,6 +57,10 @@ a:visited{
     color: rgb(195, 136, 195)
 }
 
+
+.lootTable {
+    margin-left: 15%;
+}
 .answer{
     display: flex;
     justify-content: center;

@@ -4,7 +4,7 @@ create table users
 (
     email           varchar(255) not null,
     password        varchar(255) not null,
-    forename        varchar(128) not null,
+    firstname        varchar(128) not null,
     surname         varchar(128) not null,
     enabled         boolean      not null,
     loot_boxes_left integer      not null check ( loot_boxes_left >= 0),

@@ -22,9 +22,6 @@ public class DefaultDataInitializerService {
     @Autowired
     private ItemService itemService;
 
-    @Autowired
-    private InventoryService inventoryService;
-
 
     @PostConstruct
     public void initialize() {

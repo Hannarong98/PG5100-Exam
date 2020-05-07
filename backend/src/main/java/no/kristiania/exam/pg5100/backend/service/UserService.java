@@ -97,11 +97,14 @@ public class UserService {
 
         if(found != null){
             if(found.getQuantity() == 1){
+
+                // This maybe redundant but its a double check
                 found.setQuantity(0);
                 itemsInInventory.remove(found);
                 user.setMillCurrency(user.getMillCurrency() + found.getPrice());
             } else {
                 found.setQuantity(found.getQuantity() - 1);
+                user.setMillCurrency(user.getMillCurrency() + found.getPrice());
             }
         } else {
             return false;

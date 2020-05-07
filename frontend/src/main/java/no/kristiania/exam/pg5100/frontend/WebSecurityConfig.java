@@ -81,14 +81,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             auth.jdbcAuthentication()
                     .dataSource(dataSource)
                     .usersByUsernameQuery(
-                            "SELECT username, password, enabled " +
+                            "SELECT email, password, enabled " +
                                     "FROM users " +
-                                    "WHERE username = ?"
+                                    "WHERE email = ?"
                     )
                     .authoritiesByUsernameQuery(
-                            "SELECT x.username, y.roles " +
+                            "SELECT x.email, y.roles " +
                                     "FROM users x, user_roles y " +
-                                    "WHERE x.username = ? and y.user_username = x.username "
+                                    "WHERE x.email = ? and y.user_email = x.email "
                     )
                     /*
                         Note: in BCrypt, the "password" field also contains the salt

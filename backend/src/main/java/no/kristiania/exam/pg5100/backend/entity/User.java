@@ -29,6 +29,8 @@ public class User {
     @NotNull
     private int millCurrency;
 
+    // Note that we can have min length constraint here to enforce more secure password
+    // But i decide not to simply because i am lazy to enter long password :/
     @NotBlank
     private String password;
 

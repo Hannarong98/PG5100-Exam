@@ -30,7 +30,7 @@ public class DefaultDataInitializerService {
     public void initialize() {
 
         //Default user
-        attempt(() -> userService.createUser("foo@chocolatebar.baz", "123", "foo", "chocobar"));
+        attempt(() -> userService.createUser("gaben@pipe.com", "123", "Gabe", "Bowel"));
 
 
 

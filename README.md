@@ -1,13 +1,22 @@
-[![Build Status](https://travis-ci.com/Hannarong98/PG5100-Prep.svg?token=DqMpxq41VWvgzW8Fy3oq&branch=master)](https://travis-ci.com/Hannarong98/PG5100-Prep)
 
-# CLONE ME WHEN THE TIME COMES
+###### TODO CHANGE TO STATIC IMAGE 
+ [![Build Status](https://travis-ci.com/Hannarong98/PG5100-Prep.svg?token=DqMpxq41VWvgzW8Fy3oq&branch=master)](https://travis-ci.com/Hannarong98/PG5100-Prep)
 
+# PG5100-Exam
 
-### push me to another repo
+## About this application 
+
+Its a small heartstone card collector :)
+
+#### Test user 
+
+Email: gaben@pipe.com
+<br>
+
+Password: 123
 
 #### Requirement done
 
-###### TODO specify
 
 #### Extras
 

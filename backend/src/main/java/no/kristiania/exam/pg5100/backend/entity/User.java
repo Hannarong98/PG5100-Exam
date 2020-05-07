@@ -1,20 +1,39 @@
 package no.kristiania.exam.pg5100.backend.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.util.Set;
 
 @Entity
-@Table(name="USERS")
+@Table(name = "USERS")
 public class User {
 
     @Id
     @NotBlank
-    private String username;
+    @Email
+    private String email;
+
+    @NotBlank
+    @Size(max = 128)
+    private String forename;
+
+    @NotBlank
+    @Size(max = 128)
+    private String surname;
+
+    @Min(0)
+    @NotNull
+    private int lootBoxesLeft;
+
+    @Min(0)
+    @NotNull
+    private int millCurrency;
 
     @NotBlank
     private String password;
+
+    @OneToOne
+    private Inventory inventory;
 
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<String> roles;
@@ -22,15 +41,44 @@ public class User {
     @NotNull
     private Boolean enabled;
 
-    public User() {
+    public String getEmail() {
+        return email;
     }
 
-    public String getUsername() {
-        return username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public String getForename() {
+        return forename;
+    }
+
+    public void setForename(String forename) {
+        this.forename = forename;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public int getLootBoxesLeft() {
+        return lootBoxesLeft;
+    }
+
+    public void setLootBoxesLeft(int lootBoxesLeft) {
+        this.lootBoxesLeft = lootBoxesLeft;
+    }
+
+    public int getMillCurrency() {
+        return millCurrency;
+    }
+
+    public void setMillCurrency(int millCurrency) {
+        this.millCurrency = millCurrency;
     }
 
     public String getPassword() {
@@ -39,6 +87,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
     }
 
     public Set<String> getRoles() {

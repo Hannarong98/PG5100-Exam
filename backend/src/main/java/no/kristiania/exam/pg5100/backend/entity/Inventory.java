@@ -1,9 +1,7 @@
 package no.kristiania.exam.pg5100.backend.entity;
 
 import javax.persistence.*;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.List;;
 
 @Entity
 public class Inventory {
@@ -37,12 +35,6 @@ public class Inventory {
     public List<Item> getItemList() {
         return items;
     }
-
-    public long getItemQuantity(Long itemId) {
-        return items.stream()
-                .filter(e-> e.getId().equals(itemId)).count();
-    }
-
 
     public void setItemList(List<Item> items) {
         this.items = items;

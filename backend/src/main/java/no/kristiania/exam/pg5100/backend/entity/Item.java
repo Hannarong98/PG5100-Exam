@@ -1,6 +1,7 @@
 package no.kristiania.exam.pg5100.backend.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -26,6 +27,18 @@ public class Item {
 
     @NotNull
     private int price;
+
+    @Min(0)
+    @NotNull
+    private int quantity;
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
     public Long getId() {
         return id;

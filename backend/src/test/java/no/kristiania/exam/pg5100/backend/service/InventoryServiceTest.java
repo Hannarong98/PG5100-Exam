@@ -31,10 +31,6 @@ public class InventoryServiceTest extends ServiceTestBase {
         User user = userService.getUser(email);
         assertNull(user.getInventory());
 
-        Long itemId = itemService.createItem("test", Rarity.COMMON, "test", 1);
-        inventoryService.createCopy(email);
-
-        inventoryService.addCardsToInventory(email, itemId);
 
         User same = userService.getUser(email);
 
@@ -51,13 +47,5 @@ public class InventoryServiceTest extends ServiceTestBase {
 
         Long itemOneId = itemService.createItem("test", Rarity.COMMON, "test", 1);
         Long itemTwoId = itemService.createItem("123", Rarity.COMMON, "test", 1);
-
-        inventoryService.addCardsToInventory(email, itemOneId);
-        inventoryService.addCardsToInventory(email, itemOneId);
-        inventoryService.addCardsToInventory(email, itemTwoId);
-
-        User same = userService.getUser(email);
-        assertEquals(2, same.getInventory().getItemQuantity(itemOneId));
-        assertEquals(1, same.getInventory().getItemQuantity(itemTwoId));
     }
 }

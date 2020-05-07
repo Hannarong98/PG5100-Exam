@@ -41,10 +41,9 @@ public class ItemService {
         return query.getResultList();
     }
 
-    public List<Item> getRandomItems(int n, long id){
+    public List<Item> getRandomItems(int n){
 
-        TypedQuery<Long> sizeQuery= em.createQuery("select count(i) from Item i where i.id=?1", Long.class);
-        sizeQuery.setParameter(1, id);
+        TypedQuery<Long> sizeQuery= em.createQuery("select count(i) from Item i", Long.class);
         long size = sizeQuery.getSingleResult();
 
         if(n > size){
@@ -64,14 +63,13 @@ public class ItemService {
             }
             chosen.add(k);
 
-            TypedQuery<Item> query = em.createQuery(
-                    "select i from Item i where i.id=?1", Item.class);
-            query.setParameter(1, id);
-            query.setMaxResults(1);
-            query.setFirstResult(k);
+            TypedQuery<Item> query = em.createQuery("select i from Item i where i.id=?1", Item.class);
+
+            query.setParameter(1, Long.valueOf(k));
 
             items.add(query.getSingleResult());
         }
         return  items;
     }
+
 }

@@ -32,6 +32,7 @@ create table items
     price integer not null,
     rarity varchar not null,
     title varchar(128) not null unique,
+    quantity integer not null default 0,
     primary key (id)
 );
 

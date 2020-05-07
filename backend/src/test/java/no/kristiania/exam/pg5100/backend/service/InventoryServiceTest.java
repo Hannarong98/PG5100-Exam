@@ -1,12 +1,9 @@
 package no.kristiania.exam.pg5100.backend.service;
 
-import no.kristiania.exam.pg5100.backend.entity.Item;
 import no.kristiania.exam.pg5100.backend.entity.Rarity;
 import no.kristiania.exam.pg5100.backend.entity.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -29,6 +26,7 @@ public class InventoryServiceTest extends ServiceTestBase {
 
     @Test
     public void testCreateInventory() {
+
         createUser();
         User user = userService.getUser(email);
         assertNull(user.getInventory());
@@ -36,7 +34,7 @@ public class InventoryServiceTest extends ServiceTestBase {
         Long itemId = itemService.createItem("test", Rarity.COMMON, "test", 1);
         inventoryService.createCopy(email);
 
-        inventoryService.addItemToCollectionList(email, itemId);
+        inventoryService.addCardsToInventory(email, itemId);
 
         User same = userService.getUser(email);
 
@@ -53,14 +51,12 @@ public class InventoryServiceTest extends ServiceTestBase {
 
         Long itemOneId = itemService.createItem("test", Rarity.COMMON, "test", 1);
         Long itemTwoId = itemService.createItem("123", Rarity.COMMON, "test", 1);
-        inventoryService.createCopy(email);
 
-        inventoryService.addItemToCollectionList(email, itemOneId);
-        inventoryService.addItemToCollectionList(email, itemOneId);
-        inventoryService.addItemToCollectionList(email, itemTwoId);
+        inventoryService.addCardsToInventory(email, itemOneId);
+        inventoryService.addCardsToInventory(email, itemOneId);
+        inventoryService.addCardsToInventory(email, itemTwoId);
 
         User same = userService.getUser(email);
-
         assertEquals(2, same.getInventory().getItemQuantity(itemOneId));
         assertEquals(1, same.getInventory().getItemQuantity(itemTwoId));
     }

@@ -41,7 +41,7 @@ public class InventoryService {
         return copy.getId();
     }
 
-    public boolean addItemToCollectionList(String email, Long itemId){
+    public boolean addCardsToInventory(String email, Long itemId){
 
         User user = userService.getUser(email);
 

@@ -1,5 +1,6 @@
 package no.kristiania.exam.pg5100.backend.service;
 
+import no.kristiania.exam.pg5100.backend.entity.Item;
 import no.kristiania.exam.pg5100.backend.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -9,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.Collections;
+import java.util.List;
 
 @Service
 @Transactional
@@ -46,5 +48,11 @@ public class UserService {
 
     public User getUser(String userEmail){
         return em.find(User.class, userEmail);
+    }
+
+    public List<User> getAllUsers(){
+        TypedQuery<User> query = em.createQuery("select u from User u", User.class);
+
+        return query.getResultList();
     }
 }

@@ -32,8 +32,11 @@ public class UserInfoController {
     }
 
     public List<Item> getUserCollection(){
-        User user = getUser();
-        return user.getInventory().getItemList();
+        return getUser().getInventory().getItemList();
+    }
+
+    public boolean getUserCollectionEmpty(){
+        return getUser().getInventory().getItemList().size() == 0;
     }
 
     public String millItem(Long itemId){

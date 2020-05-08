@@ -24,34 +24,45 @@
         <h:outputLabel id="userEmail">Your email: #{user.email}</h:outputLabel><br/>
 
         <h2>Your collection</h2>
-        <h:dataTable value="#{userInfoController.userCollection}"
-                     var="ownedItem" border="1" id="userCollection" styleClass="lootTable" rendered="#{userInfoController.userCollection.size != 0}">
-            <h:column>
-                <f:facet name="header">Card</f:facet>
-                <h:outputText value="#{ownedItem.title}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Rarity</f:facet>
-                <h:outputText value="#{ownedItem.rarity}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Description</f:facet>
-                <h:outputText value="#{ownedItem.description}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Resell price</f:facet>
-                <h:outputText value="#{ownedItem.price}"/>
-            </h:column>
-            <h:column>
-                <f:facet name="header">Amount Owned</f:facet>
-                <h:outputText value="#{ownedItem.quantity}"/>
-            </h:column>
-            <h:column>
-                <h:form>
-                    <h:commandButton value="Sell" id="sellBtnId" action="#{userInfoController.millItem(ownedItem.id)}"/>
-                </h:form>
-            </h:column>
-        </h:dataTable>
+
+        <c:choose>
+            <c:when test="#{!userInfoController.userCollectionEmpty}">
+                <h:dataTable value="#{userInfoController.userCollection}"
+                             var="ownedItem" border="1" id="userCollection" styleClass="lootTable">
+                    <h:column>
+                        <f:facet name="header">Card</f:facet>
+                        <h:outputText value="#{ownedItem.title}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Rarity</f:facet>
+                        <h:outputText value="#{ownedItem.rarity}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Description</f:facet>
+                        <h:outputText value="#{ownedItem.description}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Resell price</f:facet>
+                        <h:outputText value="#{ownedItem.price}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Amount Owned</f:facet>
+                        <h:outputText value="#{ownedItem.quantity}"/>
+                    </h:column>
+                    <h:column>
+                        <h:form>
+                            <h:commandButton value="Sell" id="sellBtnId"
+                                             action="#{userInfoController.millItem(ownedItem.id)}"/>
+                        </h:form>
+                    </h:column>
+                </h:dataTable>
+            </c:when>
+            <c:otherwise>
+                <p>You have not collected anything yet</p>
+            </c:otherwise>
+        </c:choose>
+
+
     </ui:define>
 
 </ui:composition>

@@ -5,12 +5,10 @@ package no.kristiania.exam.pg5100.backend.service;
 
 
 import no.kristiania.exam.pg5100.backend.entity.Rarity;
-import no.kristiania.exam.pg5100.backend.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import javax.persistence.EntityManager;
 import java.util.function.Supplier;
 
 

@@ -4,7 +4,7 @@
 
 ## About this application 
 
-Its a small heartstone card collector :)
+Its a small hearthstone card collector :)
 
 #### Test user 
 

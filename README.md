@@ -21,6 +21,8 @@ Backend: 96%
 
 Frontend: 92%
 
+Total: 95%
+
 #### Requirement done
 
 R1 to R4
@@ -28,9 +30,3 @@ R1 to R4
 #### Extras
 
 Added ci see travis.png
-
-Deployed to heroku at: 
-
-###### TODO specify
-
-##### Add ci

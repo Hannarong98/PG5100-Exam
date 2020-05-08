@@ -23,8 +23,7 @@ public class InventoryServiceTest extends ServiceTestBase {
     @Autowired
     private InventoryService inventoryService;
 
-    @Autowired
-    private ItemService itemService;
+
 
 
 

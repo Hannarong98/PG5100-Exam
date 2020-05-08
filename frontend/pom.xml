@@ -124,6 +124,22 @@
                 <artifactId>maven-failsafe-plugin</artifactId>
             </plugin>
             <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring-boot.version}</version>
+                <configuration>
+                    <finalName>pg5100-exam</finalName>
+                    <classifier>exec</classifier>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>com.heroku.sdk</groupId>
                 <artifactId>heroku-maven-plugin</artifactId>
                 <version>${heroku-maven-plugin.version}</version>
@@ -137,13 +153,13 @@
                     <artifactId>heroku-maven-plugin</artifactId>
                     <version>${heroku-maven-plugin.version}</version>
                     <configuration>
-                        <appName>mockExam</appName>
+                        <appName>heartstone-collector</appName>
                         <includeTarget>false</includeTarget>
                         <includes>
-                            <include>target/mockExam-exec.jar</include>
+                            <include>target/pg5100-exam-exec.jar</include>
                         </includes>
                         <processTypes>
-                            <web>java -Dserver.port=$PORT -jar target/mockExam-exec.jar</web>
+                            <web>java -Dserver.port=$PORT -jar target/pg5100-exam-exec.jar</web>
                         </processTypes>
                         <jdkVersion>11</jdkVersion>
                     </configuration>

@@ -30,9 +30,6 @@ public class DefaultDataInitializerService {
         //Default user
         attempt(() -> userService.createUser("gaben@pipe.com", "123", "Gabe", "Bowel"));
 
-
-
-
         //Legendary cards
         attempt(()-> itemService.createItem("Evocation", Rarity.LEGENDARY, "Fill your hand with random mage spells.", 1000));
         attempt(()-> itemService.createItem("Reliquary of Souls", Rarity.LEGENDARY, "Lifesteal Deathrattle: Shuffle 'Reliquary Prime' into your deck.", 1000));

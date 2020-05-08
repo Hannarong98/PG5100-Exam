@@ -9,6 +9,7 @@ import javax.validation.constraints.Size;
 @Table(name = "ITEMS")
 public class Item {
 
+
     @Id
     @GeneratedValue
     private Long id;

@@ -2,6 +2,7 @@ package no.kristiania.exam.pg5100.backend.service;
 
 
 import no.kristiania.exam.pg5100.backend.StubApplication;
+import no.kristiania.exam.pg5100.backend.entity.Rarity;
 import no.kristiania.exam.pg5100.backend.entity.User;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -26,6 +27,7 @@ public class UserServiceTest extends ServiceTestBase{
     public void testCreateUser(){
       assertTrue(userService.createUser("foo@bar.baz", "1234", "foo", "bar"));
     }
+
 
     @Test
     public void testFailAlreadyCreated(){

@@ -2,7 +2,6 @@ package no.kristiania.exam.pg5100.backend.service;
 
 
 import no.kristiania.exam.pg5100.backend.StubApplication;
-import no.kristiania.exam.pg5100.backend.entity.Item;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.util.List;
+import javax.persistence.EntityManager;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.annotation.DirtiesContext.ClassMode.BEFORE_CLASS;
@@ -19,6 +18,9 @@ import static org.springframework.test.annotation.DirtiesContext.ClassMode.BEFOR
 @SpringBootTest(classes = StubApplication.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @DirtiesContext(classMode = BEFORE_CLASS)
 public class DefaultDataInitializerServiceTest {
+
+    @Autowired
+    private EntityManager em;
 
     @Autowired
     private ItemService itemService;

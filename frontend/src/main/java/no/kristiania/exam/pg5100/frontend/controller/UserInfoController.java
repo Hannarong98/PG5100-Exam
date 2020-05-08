@@ -1,6 +1,7 @@
 package no.kristiania.exam.pg5100.frontend.controller;
 
 import no.kristiania.exam.pg5100.backend.entity.Item;
+import no.kristiania.exam.pg5100.backend.entity.Rarity;
 import no.kristiania.exam.pg5100.backend.entity.User;
 import no.kristiania.exam.pg5100.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,5 +58,4 @@ public class UserInfoController {
         userService.buyLootBox(userEmail);
         return "/ui/redeem.jsf?faces-redirect=true";
     }
-
 }

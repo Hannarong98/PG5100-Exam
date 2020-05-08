@@ -2,10 +2,6 @@
     NOTICE:
     this class is an adaptation of
     https://github.com/arcuri82/testing_security_development_enterprise_systems/blob/master/intro/spring/security/authorization/src/main/java/org/tsdes/intro/spring/security/authorization/WebSecurityConfig.java
-
-    And the concept of authorization is adapted from
-    https://www.baeldung.com/spring-security-expressions section 4.1
-    https://www.baeldung.com/spring-security-custom-access-denied-page
 */
 
 
@@ -55,11 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/", "/index.jsf", "/signup.jsf", "/assets/**").permitAll()
                     .antMatchers("/javax.faces.resource/**").permitAll()
                     .antMatchers("/ui/**").authenticated()
-                    .antMatchers("/admin/**").access("hasRole('ADMIN')")
                     .anyRequest().authenticated()
-                    .and()
-                    .exceptionHandling()
-                    .accessDeniedPage("/accessDenied.jsf")
                     .and()
                     .formLogin()
                     .loginPage("/login.jsf")

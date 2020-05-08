@@ -1,6 +1,7 @@
 package no.kristiania.exam.pg5100.backend.service;
 
 import no.kristiania.exam.pg5100.backend.entity.Item;
+import no.kristiania.exam.pg5100.backend.entity.Rarity;
 import no.kristiania.exam.pg5100.backend.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -11,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -26,6 +28,8 @@ public class UserService {
     @Autowired
     private InventoryService inventoryService;
 
+    @Autowired
+    private ItemService itemService;
 
 
     public boolean createUser(String email, String password, String forename, String surname) {
@@ -43,7 +47,7 @@ public class UserService {
         user.setPassword(hashedPassword);
         user.setLootBoxesLeft(3);
         user.setMillCurrency(3000);
-        user.setRoles(Collections.singleton("USER"));
+        user.setRoles(Collections.singleton("ROLE_USER"));
         user.setEnabled(true);
 
         em.persist(user);

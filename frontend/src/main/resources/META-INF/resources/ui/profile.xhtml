@@ -25,7 +25,7 @@
 
         <h2>Your collection</h2>
         <h:dataTable value="#{userInfoController.userCollection}"
-                     var="ownedItem" border="1" id="userCollection" styleClass="lootTable">
+                     var="ownedItem" border="1" id="userCollection" styleClass="lootTable" rendered="#{userInfoController.userCollection.size != 0}">
             <h:column>
                 <f:facet name="header">Card</f:facet>
                 <h:outputText value="#{ownedItem.title}"/>

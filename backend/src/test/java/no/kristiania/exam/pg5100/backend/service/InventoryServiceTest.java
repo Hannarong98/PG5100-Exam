@@ -29,18 +29,14 @@ public class InventoryServiceTest extends ServiceTestBase {
 
 
     @Test
-    public void testCreateInventory() {
+    public void testInventoryIsCreated() {
 
         createUser();
         User user = userService.getUser(email);
-        assertNull(user.getInventory());
+        assertNotNull(user.getInventory());
 
         inventoryService.createInventory(email);
-
-        User updated = userService.getUser(email);
-
-        assertEquals(0, updated.getInventory().getItemList().size());
-
+        assertEquals(0, user.getInventory().getItemList().size());
     }
 
     @Test

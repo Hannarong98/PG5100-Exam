@@ -19,8 +19,8 @@
         <h:outputLabel value="You cant afford to buy more boxes."
                        rendered="${!empty param['errorNotEnoughCurrency']}"/>
         <h:form prependId="false">
-            <h:commandButton value="Redeem Loot" action="#{gameController.openLootBox}"/>
-            <h:commandButton value="Buy a loot box" action="#{userInfoController.buyLootBox}"/>
+            <h:commandButton value="Redeem Loot" action="#{gameController.openLootBox}" id="redeemBtnId"/>
+            <h:commandButton value="Buy loot box" action="#{userInfoController.buyLootBox}" id="buyLootBoxBtnId"/>
         </h:form>
     </ui:define>
 

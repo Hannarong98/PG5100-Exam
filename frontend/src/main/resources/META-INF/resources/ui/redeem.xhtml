@@ -4,6 +4,7 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xml:lang="en" lang="en">
 <ui:composition template="/layout.xhtml">
@@ -19,8 +20,10 @@
         <h:outputLabel value="You cant afford to buy more boxes."
                        rendered="${!empty param['errorNotEnoughCurrency']}"/>
         <h:form prependId="false">
-            <h:commandButton value="Redeem Loot" action="#{gameController.openLootBox}" id="redeemBtnId"/>
-            <h:commandButton value="Buy loot box" action="#{userInfoController.buyLootBox}" id="buyLootBoxBtnId"/>
+            <h:commandButton value="Redeem Loot" action="#{gameController.openLootBox}" id="redeemBtnId"
+                             styleClass="btn" rendered="#{!userInfoController.userLootBoxCountIsZero}"/>
+            <h:commandButton value="Buy loot box" action="#{userInfoController.buyLootBox}" id="buyLootBoxBtnId"
+                             styleClass="btn"/>
         </h:form>
     </ui:define>
 

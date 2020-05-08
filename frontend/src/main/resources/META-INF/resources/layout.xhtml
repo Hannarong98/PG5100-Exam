@@ -34,8 +34,8 @@
     <c:set value="#{userInfoController.user}" var="user"/>
 
     <p><h:outputText value="Welcome #{user.firstname}!!!"/></p>
-    <p><h:outputText value="Mills: #{user.millCurrency}"/></p>
-    <p><h:outputText value="Available lootboxes: #{user.lootBoxesLeft}"/></p>
+    <p><h:outputText value="Mills: "/> <span id="layoutMillValueId">#{user.millCurrency}</span></p>
+    <p><h:outputText  value="Available lootboxes: "/> <span id="layoutLootBoxCounterId">#{user.lootBoxesLeft}</span></p>
 
     <a id="logoutId" href="/logout" class="btn">Log Out</a>
     <a id="profileId" href="/ui/profile.jsf" class="btn">Profile</a>

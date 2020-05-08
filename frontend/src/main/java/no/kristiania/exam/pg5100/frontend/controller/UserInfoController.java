@@ -39,6 +39,10 @@ public class UserInfoController {
         return getUser().getInventory().getItemList().size() == 0;
     }
 
+    public boolean getUserLootBoxCountIsZero(){
+        return getUser().getLootBoxesLeft() == 0;
+    }
+
     public String millItem(Long itemId){
         userService.sellItem(userEmail, itemId);
         return "/ui/profile.jsf?faces-redirect=true";

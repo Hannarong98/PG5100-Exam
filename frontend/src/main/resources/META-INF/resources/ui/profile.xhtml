@@ -19,8 +19,10 @@
         <c:set var="user" value="#{userInfoController.user}"/>
         <br/>
         <h2>About you</h2>
-        <h:outputLabel>Your firstname: #{user.firstname}</h:outputLabel><br/>
-        <h:outputLabel>Your surname: #{user.surname}</h:outputLabel><br/>
+        <h:outputLabel id="userFirstname">Your firstname: #{user.firstname}</h:outputLabel><br/>
+        <h:outputLabel id="userSurname">Your surname: #{user.surname}</h:outputLabel><br/>
+        <h:outputLabel id="userMills">Your currency: <span id="userMillValueId">#{user.millCurrency}</span> mills</h:outputLabel><br/>
+        <h:outputLabel id="userLootboxes">You have: <span id="lootBoxCounterId">#{user.lootBoxesLeft}</span> left</h:outputLabel><br/>
         <h:outputLabel id="userEmail">Your email: #{user.email}</h:outputLabel><br/>
 
         <h2>Your collection</h2>
@@ -51,14 +53,14 @@
                     </h:column>
                     <h:column>
                         <h:form>
-                            <h:commandButton value="Sell" id="sellBtnId"
+                            <h:commandButton value="Sell" id="millBtnId"
                                              action="#{userInfoController.millItem(ownedItem.id)}"/>
                         </h:form>
                     </h:column>
                 </h:dataTable>
             </c:when>
             <c:otherwise>
-                <p>You have not collected anything yet</p>
+                <p id="noItemId">You have not collected anything yet</p>
             </c:otherwise>
         </c:choose>
 

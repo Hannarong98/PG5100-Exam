@@ -23,7 +23,7 @@ public abstract class PageObject {
     private static final AtomicLong counter = new AtomicLong(System.currentTimeMillis());
 
     public static String getUniqueId() {
-        return "foo" + counter.incrementAndGet();
+        return "foo" + counter.incrementAndGet() + "@test.com";
     }
 
     public PageObject(WebDriver driver, String host, int port) {
@@ -56,6 +56,16 @@ public abstract class PageObject {
 
     public void clickAndWait(String id){
         WebElement element = driver.findElement(By.id(id));
+        element.click();
+        try{
+            Thread.sleep(200);} catch (Exception e){}
+        waitForPageToLoad();
+        try{
+            Thread.sleep(300);} catch (Exception e){}
+    }
+
+    public void clickAndWaitByXpath(String xpath){
+        WebElement element = driver.findElement(By.xpath(xpath));
         element.click();
         try{
             Thread.sleep(200);} catch (Exception e){}

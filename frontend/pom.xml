@@ -153,7 +153,7 @@
                     <artifactId>heroku-maven-plugin</artifactId>
                     <version>${heroku-maven-plugin.version}</version>
                     <configuration>
-                        <appName>heartstone-collector</appName>
+                        <appName>pg5100-exam-126</appName>
                         <includeTarget>false</includeTarget>
                         <includes>
                             <include>target/pg5100-exam-exec.jar</include>

@@ -8,7 +8,7 @@
 
 Its a small hearthstone card collector :)
 
-### to run this application
+## to run this application
 
 ***Prerequisite***
 
@@ -42,7 +42,3 @@ Jacoco aggregate report the following when i ran ``mvn verify``
 #### Requirement done
 
 R1 to R4
-
-#### Extras
-
-Added ci see travis.png

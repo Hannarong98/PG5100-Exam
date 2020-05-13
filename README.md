@@ -2,16 +2,31 @@
 
 # PG5100-Exam
 
+[![Build Status](https://travis-ci.com/Hannarong98/PG5100-Prep.svg?token=DqMpxq41VWvgzW8Fy3oq&branch=master)](https://travis-ci.com/Hannarong98/PG5100-Prep)
+
 ## About this application 
 
 Its a small hearthstone card collector :)
 
-#### Test user 
+### to run this application
 
-Email: gaben@pipe.com
-<br>
+***Prerequisite***
 
-Password: 123
+* JDK 11
+
+***Instruction***
+
+* Do ``mvn clean install``
+
+* Under the frontend module in test folder run the ``LocalApplicationRunner``
+
+* Connect to localhost:8080
+
+##### Test user 
+
+Email: ``gaben@pipe.com``
+
+Password: ``123``
 
 
 ## Test coverage

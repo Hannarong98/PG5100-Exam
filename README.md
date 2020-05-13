@@ -8,7 +8,7 @@
 
 Its a small hearthstone card collector :)
 
-### to run this application
+## to run this application
 
 ***Prerequisite***
 

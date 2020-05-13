@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
-<html   xmlns="http://www.w3.org/1999/xhtml"
-        xmlns:h="http://xmlns.jcp.org/jsf/html"
-        xmlns:sec="http://www.springframework.org/security/tags"
-        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:c="http://java.sun.com/jsp/jstl/core"
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:sec="http://www.springframework.org/security/tags"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
 >
 
 
@@ -35,25 +35,28 @@
 
     <p><h:outputText value="Welcome #{user.firstname}!!!"/></p>
     <p><h:outputText value="Mills: "/> <span id="layoutMillValueId">#{user.millCurrency}</span></p>
-    <p><h:outputText  value="Available lootboxes: "/> <span id="layoutLootBoxCounterId">#{user.lootBoxesLeft}</span></p>
+    <p><h:outputText value="Available lootboxes: "/> <span id="layoutLootBoxCounterId">#{user.lootBoxesLeft}</span></p>
 
-    <a id="logoutId" href="/logout" class="btn">Log Out</a>
-    <a id="profileId" href="/ui/profile.jsf" class="btn">Profile</a>
+    <a id="homeId" href="/index.jsf" class="btn">Home</a>
     <a id="redeemId" href="/ui/redeem.jsf" class="btn">Play</a>
-
+    <a id="profileId" href="/ui/profile.jsf" class="btn">Profile</a>
+    <a id="logoutId" href="/logout" class="btn">Log Out</a>
 </sec:authenticated>
 
 
 <sec:anonymous>
     <p>You are not logged in</p>
+    <a id="homeIdAnon" href="/index.jsf" class="btn">Home</a>
     <a id="linkToLoginId" href="login.jsf" class="btn">Log In</a>
-    <a id="linkToSignupId" href="signup.jsf" class="btn" >Sign Up</a>
+    <a id="linkToSignupId" href="signup.jsf" class="btn">Sign Up</a>
 </sec:anonymous>
+
+
 
 <hr/>
 
 
-<ui:insert name="content" />
+<ui:insert name="content"/>
 
 <hr/>
 

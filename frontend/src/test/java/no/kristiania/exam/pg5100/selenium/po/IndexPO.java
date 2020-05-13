@@ -24,7 +24,7 @@ public class IndexPO extends LayoutPO {
 
     @Override
     public boolean isOnPage() {
-        return getDriver().getTitle().contains("Heartstone collector");
+        return getDriver().getTitle().contains("Hearthstone collector");
     }
 
 

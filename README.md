@@ -42,7 +42,3 @@ Jacoco aggregate report the following when i ran ``mvn verify``
 #### Requirement done
 
 R1 to R4
-
-#### Extras
-
-Added ci see travis.png

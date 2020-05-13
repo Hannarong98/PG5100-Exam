@@ -166,11 +166,13 @@ public abstract class SeleniumTestBase {
         RedeemPO redeemPO = home.toRedeemPage();
 
         assertEquals(3000, redeemPO.getLayoutMillValue());
+        assertEquals(3, redeemPO.getLayoutLootBoxCounter());
 
         redeemPO.clickAndWait("buyLootBoxBtnId");
 
         // Lootbox is worth 700 mills
         assertEquals(2300, redeemPO.getLayoutMillValue());
+        assertEquals(4, redeemPO.getLayoutLootBoxCounter());
     }
 
 

@@ -31,7 +31,7 @@ Password: ``123``
 
 ## Test coverage
 
-Jacoco aggregate report the following when i ran ``mvn verify``
+Jacoco aggregate reports the following when i ran ``mvn verify``
 
 * Backend: 96%
 
